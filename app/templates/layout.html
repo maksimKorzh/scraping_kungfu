@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <title>Scraping Kung Fu</title>
+      <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script type = "text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      <script type = "text/javascript"  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>  
+    </head>
+    <body>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <nav class="navbar navbar-expand-md navbar-light bg-light">
+              <a class="navbar-brand text-secondary" href="/">Scraping Kung Fu</a>
+
+              <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+            <div>
+              {% block body %}{% endblock %}
+            </div>
+            <div class="mt-4 card-text text-center text-secondary">Created by Maksim Korzh aka Code Monkey King</div>
+            <div class="card-text text-center text-secondary">
+              <strong>  
+                <a href="mailto:freesoft.for.people@gmail.org">freesoft.for.people@gmail.org</a>
+              </strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+</html>

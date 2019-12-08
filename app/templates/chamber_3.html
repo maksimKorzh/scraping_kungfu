@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+ 
+<div class="card mt-2">
+  <div class="card-body">
+    <h5 class="card-title text-center"><strong class="text-success">Chamber 2</strong></h5>
+    <p class="card-text text-center text-secondary">
+      Your task is to extract available items from all the movies card below and store them to CSV.
+    </p>
+    
+    <!-- Pagination -->
+    <div class="col col-3 mt-4 mx-auto">
+      {{ pagination.links }}
+    </div>
+
+    {% for movie in movies %}
+      <div class="col">
+        <div class="card mt-3">
+          <div class="card-header text-left">
+            <strong>{{movie.title}}</strong>
+          </div>
+          <div class="card-body">
+            <div class="row">
+        
+            <div class="col-md-6 text-left">
+              <div>
+                <span class="text-secondary"><strong>Genre:</strong></span>
+                <span>{{movie.genre}}</span>              
+              </div>
+              <div>
+                <span class="text-secondary"><strong>Country:</strong></span>
+                <span>{{movie.country}}</span>              
+              </div>
+              <div>
+                <span class="text-secondary"><strong>Year:</strong></span>
+                <span>{{movie.release_year}}</span>              
+              </div>
+              <div>
+                <span class="text-secondary"><strong>Director:</strong></span>
+                <span>{{movie.director}}</span>              
+              </div>
+              <div>
+                <span class="text-secondary"><strong>Starring:</strong></span>
+                <span>{{movie.starring}}</span>              
+              </div>
+            </div>
+            
+            <div class="col text-right">
+              <img src="{{movie.poster}}" alt="Card image cap" style="height: 180px"/>
+            </div>
+          
+          </div>
+          </div>
+        </div>
+      </div>  
+    {% endfor %}
+    
+    <!-- Pagination -->
+    <div class="col col-3 mt-4 mx-auto">
+      {{ pagination.links }}
+    </div>
+    
+  </div>
+</div>
+  
+{% endblock %}

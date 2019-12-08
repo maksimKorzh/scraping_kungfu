@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+ 
+<div class="card mt-2">
+  <div class="card-body text-center">
+    <h5 class="card-title text-center"><strong class="text-success">Chamber 1</strong></h5>
+    <p class="card-text text-secondary">
+      Your task is to extract available items and image source from the movie card below and print output to screen.
+    </p>
+    
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          <h4>{{movie.title}}</h4>
+        </div>
+        <div class="card-body mx-auto">
+          <div class="row">
+        
+            <div class="col-md-9 text-left">
+              <p>
+                <span class="text-secondary"><strong>Genre:</strong></span>
+                <span>{{movie.genre}}</span>              
+              </p>
+              <p>
+                <span class="text-secondary"><strong>Country:</strong></span>
+                <span>{{movie.country}}</span>              
+              </p>
+              <p>
+                <span class="text-secondary"><strong>Year:</strong></span>
+                <span>{{movie.release_year}}</span>              
+              </p>
+              <p>
+                <span class="text-secondary"><strong>Director:</strong></span>
+                <span>{{movie.director}}</span>              
+              </p>
+              <p>
+                <span class="text-secondary"><strong>Starring:</strong></span>
+                <span>{{movie.starring}}</span>              
+              </p>
+            </div>
+            
+            <div class="col-md-1">
+              <img src="{{movie.poster}}" alt="Card image cap"/>
+            </div>
+          
+          </div>        
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+  
+{% endblock %}
