@@ -1,4 +1,4 @@
 flask_paginate==0.5.3
 Flask==1.1.1
 passlib==1.7.1
-gunicorn==19.0.0
+gunicorn==19.5.0
