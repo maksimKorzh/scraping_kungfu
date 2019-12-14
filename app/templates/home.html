@@ -1,46 +1,35 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<div class="card mt-2">
-  <div class="card-body">
-    <h5 class="card-title text-center">36 chambers of Web Scraping *</h5>
-    <p class="card-text text-center text-secondary">* Reference to "36 chambers of Shaolin" starring Gordon Liu</p>
+    <div class="jumbotron jumbotron-fluid mt-2" style="padding: 50px">
+      <div class="container">
 
-    <div class="row mt-5">
-      
-      <div class="col">
-        <div class="card">
-          <div class="card-body text-center">
-            <h5 class="card-title">Chamber 1</h5>
-            <p class="card-text text-secondary">Scraping single element's items</p>
-            <a class="btn btn-primary" href="/chamber_1">Enter</a>
+        <h1 class="display-4 mt-4">What is this site all about?</h1>
+        <div class="lead">Web scraping is an applied programming skill to extract data from web sites.</div>
+        <div class="lead">There are many technologies of presenting data on the web pages such as</div>
+        <div class="lead">static HTML files, dynamic page templates, JS rendered data etc. Each particular</div>
+        <div class="lead">case involves a specific technique to extract data from the corresponding source.</div>
+        <div class="lead">This sites is built to provide a free playground to improve your web scraping skills.</div>
+        <div class="lead">It contains 36 exercises to practice various web scraping techniques - from simple</div>
+        <div class="lead">pagination handling to tricky AJAX requests faking to extract data from the</div>
+        <div class="lead">hidden APIs. It would also help you to master such techniques as user agent spoofing,</div>
+        <div class="lead">customizing HTTP headers, rotating proxies etc. So it's kind of all you need to know</div>
+        <div class="lead">to become a freelancing python developer!</div>
+                
+        <h1 class="display-4 mt-4">What does this site offer?</h1>
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <p class="lead text-left">✔️ Improve your web scraping skills</p>
+            <p class="lead text-left">✔️ Find code solutions for each exercise</p>
+            <p class="lead text-left">✔️ Ask questions and interact with the community</p>
+          </div>
+          <div class="col-md-4">
+            <div><a class="btn btn-success text-right" href="/chambers">Try it now</a></div>
+            <div><a class="btn btn-success text-right mt-2" href="https://github.com/maksimKorzh/scraping_kungfu/tree/master/scrapers">Try it now</a></div>
+            <div><a class="btn btn-success text-right mt-2" href="/community">Try it now</a></div>
           </div>
         </div>
       </div>
-      
-      <div class="col">
-        <div class="card">
-          <div class="card-body text-center">
-            <h5 class="card-title">Chamber 2</h5>
-            <p class="card-text text-secondary">Scraping multiple elements</p>
-            <a class="btn btn-primary" href="/chamber_2">Enter</a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col">
-        <div class="card">
-          <div class="card-body text-center">
-            <h5 class="card-title">Chamber 3</h5>
-            <p class="card-text text-secondary">Scraping elements from multiple pages</p>
-            <a class="btn btn-primary" href="/chamber_3">Enter</a>
-          </div>
-        </div>
-      </div>
-      
     </div>
 
-  </div>
-</div>
-  
-{% endblock %}
+{% endblock%}

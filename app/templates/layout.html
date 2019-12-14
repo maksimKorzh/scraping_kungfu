@@ -3,22 +3,40 @@
     <head>
       <meta charset="utf-8">
       <title>Scraping Kung Fu</title>
+
+      <link rel="shortcut icon" href="{{url_for('static', filename='images/favicon.ico')}}">
       <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+      
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
       <script type = "text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-      <script type = "text/javascript"  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>  
+      <script type = "text/javascript"  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+      <script type = "text/javascript"  src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+      <script type = "text/javascript"  src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
     </head>
     <body>
       <div class="container">
         <div class="row">
           <div class="col">
             <nav class="navbar navbar-expand-md navbar-light bg-light">
+              <img src="{{ url_for('static', filename='images/logo.png') }}" style="width: 40px; margin-right: 30px"/>
               <a class="navbar-brand text-secondary" href="/">Scraping Kung Fu</a>
 
               <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav ml-auto">
                   <li class="nav-item">
-                    <a class="nav-link" href="/about">About</a>
+                    <a class="nav-link" href="/chambers">Chambers</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/community">Community</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
                   </li>
                 </ul>
               </div>
@@ -32,9 +50,14 @@
                 <a href="mailto:freesoft.for.people@gmail.org">freesoft.for.people@gmail.org</a>
               </strong>
             </div>
-            <div class="card-text text-center text-secondary">
+            <div class="card-text text-center">
               <strong>  
                 <a class="text-success" href="https://github.com/maksimKorzh/scraping_kungfu">Source code of this project</a>
+              </strong>
+            </div>
+            <div class="card-text text-center">
+              <strong>  
+                <a class="text-danger" href="https://www.youtube.com/channel/UClA-jNuyJKqN-xCm7KPG_XA/featured?view_as=subscriber">Youtube Channel</a>
               </strong>
             </div>
           </div>

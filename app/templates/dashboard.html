@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <div class="card mt-2">
+    <div class="card-body">
+
+        <table id="dashboard" class="display responsive mt-4" style="width: 100%">
+          <thead>
+            <tr>
+              <th>Ip:</th>
+              <th>Method:</th>
+              <th>URL:</th>
+              <th>Referer:</th>
+              <th>Host:</th>
+              <th>Accept:</th>
+              <th>Accept encoding:</th>
+              <th>Accept language:</th>
+              <th>Connection:</th>
+              <th>Cache-Control:</th>
+              <th>Upgrade-Insecure-Requests:</th>
+              <th>User agent:</th>
+              <th hidden=true>id</th>
+            </tr>
+          <thead>
+          <tbody>
+            {% for entry in stats %}
+              <tr>
+                <td>{{entry['Ip']}}</td>
+                <td>{{entry['Method']}}</td>
+                <td>{{entry['URL']}}</td>
+                <td>{{entry['Referer']}}</td>
+                <td>{{entry['Host']}}</td>
+                <td>{{entry['Accept']}}</td>
+                <td>{{entry['Accept-Encoding']}}</td>
+                <td>{{entry['Accept-Language']}}</td>
+                <td>{{entry['Connection']}}</td>
+                <td>{{entry['Cache-Control']}}</td>
+                <td>{{entry['Upgrade-Insecure-Requests']}}</td>
+                <td>{{entry['User-Agent']}}</td>
+                <td hidden=true>{{entry['_id']}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      
+    </div>
+  </div>
+  
+  <script type="text/javascript">
+    $(document).ready( function () {
+      $('#dashboard').DataTable({
+        "order": [[ 12, "desc" ]]
+      });
+    });
+  </script>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <div class="card mt-2">
+    <div id="posters" class="card-body text-center"> 
+      <h5 class="card-title text-center"><strong class="text-success">Chamber 6</strong></h5>
+      <p class="card-text text-center text-secondary">
+        Your task is to fake AJAX request to scrape data from the table below
+      </p>
+      
+      <div class="mt-5">
+        <table id="movies" class="display responsive nowrap text-left" style="width: 100%">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Country</th>
+              <th>Year</th>
+              <th>Genre</th>
+              <th>Director</th>
+              <th>Starring</th>
+              <th>Poster URL</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  <script type="text/javascript">
+    $('#movies').DataTable( {
+        "ajax": "../api",
+        "columns": [
+          {"data": "title"},
+          {"data": "country"},
+          {"data": "release_year"},
+          {"data": "genre"},
+          {"data": "director"},
+          {"data": "starring"},
+          {"data": "poster"}
+        ]
+    });
+  </script>
+{% endblock %}

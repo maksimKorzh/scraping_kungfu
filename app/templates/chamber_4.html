@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <div class="card mt-2">
+    <div id="posters" class="card-body text-center"> 
+      <h5 class="card-title text-center"><strong class="text-success">Chamber 4</strong></h5>
+      <p class="card-text text-center text-secondary">
+        Your task is to download all available images from the page
+      </p>
+       
+      {% for movie in movies %}
+        <img src={{movie.poster}} style="width: 300px; height: 480px; margin: 5px;"/>
+      {% endfor %}
+      
+    </div>
+  </div>
+{% endblock %}

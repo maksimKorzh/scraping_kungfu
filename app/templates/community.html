@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <div class="card mt-2">
+    <div class="card-body">
+
+      <div class="col-md-8 text-left mx-auto">
+        
+        <form id="post" method="post" class="form-group">
+          <input type="text" name="username" placeholder="Enter your name..." class="form-control">
+          <textarea name="feedback" class="form-control noresize mt-2" placeholder="Leave your post here..." rows="3"></textarea>
+          <div class="row">
+            <div class="col-md-2 ml-auto">
+              <button type="submit" class="btn btn-success col-md-12 mt-2">Post</button>
+            </div>
+          </div>
+        </form>
+        
+        <div class="mt-5"></div>
+        
+        <table id="feedbacks" class="table" style="table-layout: fixed;">
+          <thead hidden=true>
+            <tr>
+              <th>id</th>
+              <th>feed</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for feedback in feedbacks %}
+              <tr>
+                <td hidden=true>{{feedback._id}}</td>
+                <td class="col-6"><strong>{{feedback.user}}: </strong>{{feedback.post}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        
+    </div>
+  </div>
+  
+  <script type="text/javascript">
+    $(document).ready( function () {
+      $('#feedbacks').DataTable({
+        "order": [[ 0, "desc" ]]
+      });
+    });
+    
+    document.getElementById('post').onsubmit = function() {
+      username = document.getElementsByName('username')[0].value
+      post = document.getElementsByName('feedback')[0].value
+      
+      if (username == '') {
+        alert('Please enter your name to submit the post!');
+        return false;
+      } else if (post == '') {
+        alert('Please write some text to submot the post!');
+        return false;
+      } else {
+        return true;
+      }
+    };
+  </script>
+{% endblock %}
+
+
+
