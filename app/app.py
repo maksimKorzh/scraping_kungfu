@@ -118,7 +118,7 @@ def fourth_chamber():
 @app.route('/chamber_5')
 def fifth_chamber():
     update_stats()
-    movies = [movie for movie in mongo.db.movies.find({})]
+    movies = [movie for movie in mongo.db.movies.find({}, limit=100)]
     return render_template('chamber_5.html', movies=movies)
 
 @app.route('/chamber_6')
