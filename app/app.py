@@ -62,7 +62,7 @@ def dashboard():
         
     return render_template('dashboard.html', stats=stats)
 
-@app.route('/api')
+@app.route('/api', methods=['GET', 'POST'])
 def api():
     update_stats()
     response = []
@@ -71,7 +71,13 @@ def api():
         movie['_id'] = str(movie['_id'])
         response.append(movie)
     
-    return jsonify({'data': response})
+    if request.method == 'POST':
+        index = int(request.args.get('index'))
+        limit = int(request.args.get('limit'))
+        
+        return jsonify({'data': response[index:index+limit]})
+    else:
+        return jsonify({'data': response})
 
 @app.route('/chambers')
 def about():
@@ -125,6 +131,12 @@ def fifth_chamber():
 def sixth_chamber():
     update_stats()
     return render_template('chamber_6.html')
+
+@app.route('/chamber_7')
+def seventh_chamber():
+    #update_stats()
+    movies = mongo.db.movies.find(limit=10)
+    return render_template('chamber_7.html', movies=movies)
 
 ######################################################
 # 

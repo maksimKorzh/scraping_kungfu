@@ -1,0 +1,124 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <div class="card mt-2">
+    <div class="card-body text-center"> 
+      <h5 class="card-title text-center"><strong class="text-success">Chamber 7</strong></h5>
+      <p class="card-text text-center text-secondary">
+        Your task is to scrape data from the infinite scroll page
+      </p>
+      
+      <div id="movies">
+        {% for movie in movies %}
+        <div class="col">
+          <div class="card mt-3">
+            <div class="card-header text-left">
+              <strong class="movie-title">{{movie.title}}</strong>
+            </div>
+            <div class="card-body">
+              <div class="row">
+          
+              <div class="col-md-6 text-left">
+                <div>
+                  <span class="text-secondary"><strong>Genre:</strong></span>
+                  <span class="movie-genre">{{movie.genre}}</span>              
+                </div>
+                <div>
+                  <span class="text-secondary"><strong>Country:</strong></span>
+                  <span class="movie-country">{{movie.country}}</span>              
+                </div>
+                <div>
+                  <span class="text-secondary"><strong>Year:</strong></span>
+                  <span class="movie-year">{{movie.release_year}}</span>              
+                </div>
+                <div>
+                  <span class="text-secondary"><strong>Director:</strong></span>
+                  <span class="movie-director">{{movie.director}}</span>              
+                </div>
+                <div>
+                  <span class="text-secondary"><strong>Starring:</strong></span>
+                  <span class="movie-starring">{{movie.starring}}</span>              
+                </div>
+              </div>
+              
+              <div class="col text-right">
+                <img class="movie-poster" src="{{movie.poster}}" alt="Card image cap" style="height: 180px"/>
+              </div>
+            
+            </div>
+            </div>
+          </div>
+        </div>  
+      {% endfor %}
+      <div id="loading" class="mt-2"></div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <script type="text/javascript">
+    //$(document).ready( function () {
+      var index = 10
+
+      $(window).scroll(function() {
+        if($(window).scrollTop() + $(window).height() == $(document).height()) {
+          $(window).scrollTop($(window).scrollTop()-800);
+           
+          $('#movies').append('<div id="loading" class="mt-2">Loading content...</div>');
+          downloadContent(index, 10);
+          index += 10;
+        }
+      });
+      
+      
+    //});
+    
+    function downloadContent(index, limit) {
+      $.post('/api?index=' + index + '&limit=' + limit, (data) => {
+        for (var index = 0; index < data.data.length; index++) {
+          var element = `
+            <div class="col">
+              <div class="card mt-3">
+                <div class="card-header text-left">
+                  <strong class="movie-title">` + data.data[index].title + `</strong>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+              
+                  <div class="col-md-6 text-left">
+                    <div>
+                      <span class="text-secondary"><strong>Genre:</strong></span>
+                      <span class="movie-genre">` + data.data[index].genre + `</span>              
+                    </div>
+                    <div>
+                      <span class="text-secondary"><strong>Country:</strong></span>
+                      <span class="movie-country">` + data.data[index].country + `</span>              
+                    </div>
+                    <div>
+                      <span class="text-secondary"><strong>Year:</strong></span>
+                      <span class="movie-year">` + data.data[index].release_year + `</span>              
+                    </div>
+                    <div>
+                      <span class="text-secondary"><strong>Director:</strong></span>
+                      <span class="movie-director">` + data.data[index].director + `</span>              
+                    </div>
+                    <div>
+                      <span class="text-secondary"><strong>Starring:</strong></span>
+                      <span class="movie-starring">` + data.data[index].starring + `</span>              
+                    </div>
+                  </div>
+                  
+                  <div class="col text-right">
+                    <img class="movie-poster" src="` + data.data[index].poster + `" alt="Card image cap" style="height: 180px"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `
+          $('#loading').remove()
+          $('#movies').append(element)
+        }
+      });
+    }
+  </script>
+{% endblock %}
