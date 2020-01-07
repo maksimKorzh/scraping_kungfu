@@ -15,6 +15,14 @@
       <script type = "text/javascript"  src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
       <script type = "text/javascript"  src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 
+      <!-- Analytics -->
+      <script type="text/javascript">
+        $.post('https://cmkanalytics.herokuapp.com/api/post', {
+          date: new Date,
+          url: window.location.href
+        });
+      </script>
+
     </head>
     <body>
       <div class="container">

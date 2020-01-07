@@ -7,40 +7,18 @@
         <table id="dashboard" class="display responsive mt-4" style="width: 100%">
           <thead>
             <tr>
-              <th>Ip:</th>
+              <th>Date:</th>
               <th>Method:</th>
               <th>URL:</th>
-              <th>Referer:</th>
-              <th>Host:</th>
+              <th>Ip:</th>              
               <th>Accept:</th>
               <th>Accept encoding:</th>
-              <th>Accept language:</th>
               <th>Connection:</th>
-              <th>Cache-Control:</th>
-              <th>Upgrade-Insecure-Requests:</th>
+              <th>Host:</th>
               <th>User agent:</th>
-              <th hidden=true>id</th>
+              <th><div hidden=true>id</div></th>
             </tr>
           <thead>
-          <tbody>
-            {% for entry in stats %}
-              <tr>
-                <td>{{entry['Ip']}}</td>
-                <td>{{entry['Method']}}</td>
-                <td>{{entry['URL']}}</td>
-                <td>{{entry['Referer']}}</td>
-                <td>{{entry['Host']}}</td>
-                <td>{{entry['Accept']}}</td>
-                <td>{{entry['Accept-Encoding']}}</td>
-                <td>{{entry['Accept-Language']}}</td>
-                <td>{{entry['Connection']}}</td>
-                <td>{{entry['Cache-Control']}}</td>
-                <td>{{entry['Upgrade-Insecure-Requests']}}</td>
-                <td>{{entry['User-Agent']}}</td>
-                <td hidden=true>{{entry['_id']}}</td>
-              </tr>
-            {% endfor %}
-          </tbody>
         </table>
       
     </div>
@@ -49,7 +27,20 @@
   <script type="text/javascript">
     $(document).ready( function () {
       $('#dashboard').DataTable({
-        "order": [[ 12, "desc" ]]
+        "order": [[ 9, "desc" ]],
+        "ajax": "../api/dashboard",
+        "columns": [
+          {"data": "Date"},
+          {"data": "Method"},
+          {"data": "URL"},
+          {"data": "Ip"},
+          {"data": "Accept"},
+          {"data": "Accept-Encoding"},
+          {"data": "Connection"},
+          {"data": "Host"},
+          {"data": "User-Agent"},
+          {"data": (data) => {return '<div hidden=true>' + data['_id'] + '</div>'}}
+        ]
       });
     });
   </script>

@@ -11,9 +11,11 @@ from flask import flash
 from flask import redirect
 from flask import url_for
 from flask import jsonify
+from flask import Response
 from flask_pymongo import PyMongo
 from flask_paginate import Pagination, get_page_args
 import json
+import datetime
 
 
 ######################################################
@@ -57,10 +59,17 @@ def contact():
     
 @app.route('/dashboard')
 def dashboard():
-    update_stats()
-    stats = mongo.db.stats.find({})
-        
-    return render_template('dashboard.html', stats=stats)
+    return render_template('dashboard.html')
+
+@app.route('/api/dashboard')
+def api_dashboard():
+    stats = []
+
+    for entry in mongo.db.stats.find():
+        entry['_id'] = str(entry['_id'])
+        stats.append(entry)
+
+    return jsonify({'data': stats})
 
 @app.route('/api', methods=['GET', 'POST'])
 def api():
@@ -148,7 +157,14 @@ def update_stats():
     stats = dict(request.headers)
     stats['URL'] = request.url
     stats['Method'] = request.method
-    stats['Ip'] = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+    
+    if request.headers.getlist("X-Forwarded-For"):
+       stats['Ip'] = request.headers.getlist("X-Forwarded-For")[0]
+    else:
+       stats['Ip'] = request.remote_addr
+
+    #stats['Ip'] = request.remote_addr   #environ.get('HTTP_X_REAL_IP', request.remote_addr)
+    stats['Date'] = datetime.datetime.today()
     mongo.db.stats.insert_one(stats)
 
 
