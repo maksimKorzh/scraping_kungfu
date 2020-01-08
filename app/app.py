@@ -61,6 +61,10 @@ def contact():
 def dashboard():
     return render_template('dashboard.html')
 
+@app.route('/donate')
+def donate():
+    return render_template('donate.html')
+
 @app.route('/api/dashboard')
 def api_dashboard():
     stats = []
