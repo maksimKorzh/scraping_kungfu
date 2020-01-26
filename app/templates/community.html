@@ -30,7 +30,15 @@
             {% for feedback in feedbacks %}
               <tr>
                 <td hidden=true>{{feedback._id}}</td>
-                <td class="col-6"><strong>{{feedback.user}}: </strong>{{feedback.post}} <br><small class="text-secondary">{{feedback.date}}</small></td>
+                <td class="col-6"><strong>{{feedback.user}}: </strong>
+                  {% if '\n' in feedback['post'] %}  
+                    {% for line in feedback['post'].split('\n')%}
+                      {{line}}<br>
+                    {% endfor %}
+                  {% else %}
+                    {{feedback['post']}}
+                  {% endif %}
+                <br><small class="text-secondary">{{feedback.date}}</small></td>
               </tr>
             {% endfor %}
           </tbody>
@@ -51,8 +59,8 @@
     });
     
     document.getElementById('post').onsubmit = function() {
-      username = document.getElementsByName('username')[0].value
-      post = document.getElementsByName('feedback')[0].value
+      username = document.getElementsByName('username')[0].value;
+      post = document.getElementsByName('feedback')[0].value;
       
       if (username == '') {
         alert('Please enter your name to submit the post!');
