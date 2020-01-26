@@ -37,47 +37,25 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def home():
-    update_stats()
     return render_template('home.html')
 
 @app.route('/community', methods=['GET', 'POST'])
 def community():
-    update_stats()
-    
     if request.method == 'POST':
         mongo.db.feedbacks.insert_one({
             'user': request.form.get('username'),
-            'post': request.form.get('feedback')
+            'post': request.form.get('feedback'),
+            'date': request.form.get('date')
         })
 
     return render_template('community.html', feedbacks=mongo.db.feedbacks.find({}))
 
 @app.route('/contact')
 def contact():
-    update_stats()
     return render_template('contact.html')
-    
-@app.route('/dashboard')
-def dashboard():
-    return render_template('dashboard.html')
-
-@app.route('/donate')
-def donate():
-    return render_template('donate.html')
-
-@app.route('/api/dashboard')
-def api_dashboard():
-    stats = []
-
-    for entry in mongo.db.stats.find():
-        entry['_id'] = str(entry['_id'])
-        stats.append(entry)
-
-    return jsonify({'data': stats})
 
 @app.route('/api', methods=['GET', 'POST'])
 def api():
-    update_stats()
     response = []
     
     for movie in mongo.db.movies.find({}):
@@ -94,27 +72,20 @@ def api():
 
 @app.route('/chambers')
 def about():
-    update_stats()
     return render_template('chambers.html')
 
 @app.route('/chamber_1')
-def first_chamber():
-    update_stats()
-    
+def first_chamber():    
     movie = mongo.db.movies.find_one({'title': 'The 36th Chamber of Shaolin'})
     return render_template('chamber_1.html', movie=movie)
 
 @app.route('/chamber_2')
 def second_chamber():
-    update_stats()
-    
     movies = mongo.db.movies.find(limit=50)
     return render_template('chamber_2.html', movies=movies)
 
 @app.route('/chamber_3')
 def third_chamber():
-    update_stats()
-    
     movies = [movie for movie in mongo.db.movies.find()]
     total = len(movies)
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
@@ -129,47 +100,22 @@ def third_chamber():
 
 @app.route('/chamber_4')
 def fourth_chamber():
-    update_stats()
-    
     movies = [movie for movie in mongo.db.movies.find({}, limit=27)]
     return render_template('chamber_4.html', movies=movies[3:])
 
 @app.route('/chamber_5')
 def fifth_chamber():
-    update_stats()
     movies = [movie for movie in mongo.db.movies.find({}, limit=100)]
     return render_template('chamber_5.html', movies=movies)
 
 @app.route('/chamber_6')
 def sixth_chamber():
-    update_stats()
     return render_template('chamber_6.html')
 
 @app.route('/chamber_7')
 def seventh_chamber():
-    #update_stats()
     movies = mongo.db.movies.find(limit=10)
     return render_template('chamber_7.html', movies=movies)
-
-######################################################
-# 
-# Helper functions
-#
-######################################################
-
-def update_stats():
-    stats = dict(request.headers)
-    stats['URL'] = request.url
-    stats['Method'] = request.method
-    
-    if request.headers.getlist("X-Forwarded-For"):
-       stats['Ip'] = request.headers.getlist("X-Forwarded-For")[0]
-    else:
-       stats['Ip'] = request.remote_addr
-
-    #stats['Ip'] = request.remote_addr   #environ.get('HTTP_X_REAL_IP', request.remote_addr)
-    stats['Date'] = datetime.datetime.today()
-    mongo.db.stats.insert_one(stats)
 
 
 ######################################################

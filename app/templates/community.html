@@ -14,6 +14,7 @@
               <button type="submit" class="btn btn-success col-md-12 mt-2">Post</button>
             </div>
           </div>
+          <input id="create-date" name="date" type="text" hidden>
         </form>
         
         <div class="mt-5"></div>
@@ -29,7 +30,7 @@
             {% for feedback in feedbacks %}
               <tr>
                 <td hidden=true>{{feedback._id}}</td>
-                <td class="col-6"><strong>{{feedback.user}}: </strong>{{feedback.post}}</td>
+                <td class="col-6"><strong>{{feedback.user}}: </strong>{{feedback.post}} <br><small class="text-secondary">{{feedback.date}}</small></td>
               </tr>
             {% endfor %}
           </tbody>
@@ -43,6 +44,10 @@
       $('#feedbacks').DataTable({
         "order": [[ 0, "desc" ]]
       });
+      
+      var time = new Date().toISOString().slice(11, -5);
+      var timezone = new Date().toString().slice(-41)
+      $('#create-date').val(moment(new Date()).format("Do MMM YYYY") + ' at ' + time + ' | ' + timezone);
     });
     
     document.getElementById('post').onsubmit = function() {

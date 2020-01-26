@@ -14,6 +14,7 @@
       <script type = "text/javascript"  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
       <script type = "text/javascript"  src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
       <script type = "text/javascript"  src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
 
       <!-- Analytics -->
       <script type="text/javascript">
@@ -38,6 +39,9 @@
               <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav ml-auto">
                   <li class="nav-item">
+                    <a class="nav-link" href="https://maksimkorzh.pythonanywhere.com/"><strong class="text-primary">CODE NOW!</strong></a>
+                  </li>
+                  <li class="nav-item">
                     <a class="nav-link" href="/chambers">Chambers</a>
                   </li>
                   <li class="nav-item">
@@ -47,16 +51,16 @@
                     <a class="nav-link" href="/contact">Contact</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/dashboard">Dashboard</a>
-                  </li>
-                  <li class="nav-item">
-                    <strong><a class="nav-link" href="/donate">Donate</a></strong>
+                    <a class="nav-link" href="https://cmkanalytics.herokuapp.com/">Dashboard</a>
                   </li>
                 </ul>
               </div>
             </nav>
             <div>
               {% block body %}{% endblock %}
+            </div>
+            <div class="text-center mt-4">
+              <a href="https://www.patreon.com/bePatron?u=29097253" data-patreon-widget-type="become-patron-button">Become a Patron!</a>
             </div>
             <div class="mt-4 card-text text-center text-secondary">Created by Maksim Korzh aka Code Monkey King</div>
             <div class="card-text text-center text-secondary">
