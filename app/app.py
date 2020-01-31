@@ -50,6 +50,10 @@ def community():
 
     return render_template('community.html', feedbacks=mongo.db.feedbacks.find({}))
 
+@app.route('/code')
+def code():
+    return render_template('code.html')
+
 @app.route('/contact')
 def contact():
     return render_template('contact.html')

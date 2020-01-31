@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <div class="card mt-2">
+    <div class="card-body">
+      <div class="jumbotron jumbotron-fluid mt-2" style="padding: 30px">
+        <div class="container text-center">
+          <h1 class="display-4 mt-4">Code web scrapers online</h1>
+          <hr class="my-4">
+          <div class="row mt-4">
+            <div class="col"><a target="_blank" href="https://www.pythonanywhere.com/?affiliate_id=0066a4c4" class="col btn btn-primary">Pythonanywhere.com</a></div>
+            <div class="col-1 lead bold">+</div>
+            <div class="col"><a target="_blank" href="https://github.com/maksimKorzh/onetimescraper" class="col btn btn-success">Onetimescraper</a></div>
+          </div>
+        </div>
+      </div>
+      <img src="{{url_for('static', filename = 'images/ots.png')}}" style="height: 520px;"></img>
+    </div>
+  </div>
+{% endblock %}
