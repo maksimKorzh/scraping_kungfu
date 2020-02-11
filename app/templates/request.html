@@ -26,13 +26,17 @@
     $.get('/api/request', (data) => {
       $.each(data, (key, val) => {  
         if (key != 'headers') {
-          rows = '<tr><td><strong>' + key + ':</strong></td><td>' + val + '</td></tr>'
+          if (key == 'url')
+            rows = '<tr><td><strong>' + key + ':</strong></td><td><a href="' + val + '">' + val + '</a></td></tr>';
+          else
+            rows = '<tr><td><strong>' + key + ':</strong></td><td>' + val + '</td></tr>';
+          
           $('#request').append(rows);
         }
       });
       
       $.each(data.headers, (key, val) => {  
-        rows = '<tr><td><strong>' + key + ':</strong></td><td>' + val + '</td></tr>'
+        rows = '<tr><td><strong>' + key + ':</strong></td><td>' + val + '</td></tr>';
         $('#headers').append(rows);
       });
     });

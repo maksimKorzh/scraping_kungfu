@@ -76,8 +76,13 @@ def api():
 
 @app.route('/api/request')
 def api_request():
+    if request.headers.getlist("X-Forwarded-For"):
+      ip = request.headers.getlist("X-Forwarded-For")[0]
+    else:
+      ip = request.remote_addr
+
     return jsonify({
-        'ip': request.headers.getlist("X-Forwarded-For")[0],
+        'ip': ip,
         'url': request.url,
         'method': request.method,
         'headers': dict(request.headers)
