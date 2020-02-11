@@ -74,7 +74,7 @@ def api():
     else:
         return jsonify({'data': response})
 
-@app.route('/api/request')
+@app.route('/api/request', methods=['GET', 'POST', 'PUT', 'DELETE'])
 def api_request():
     if request.headers.getlist("X-Forwarded-For"):
       ip = request.headers.getlist("X-Forwarded-For")[0]
