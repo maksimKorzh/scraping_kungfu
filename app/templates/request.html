@@ -29,8 +29,11 @@
           if (key == 'url')
             rows = '<tr><td><strong>' + key + ':</strong></td><td><a href="' + val + '">' + val + '</a></td></tr>';
           else
-            rows = '<tr><td><strong>' + key + ':</strong></td><td>' + val + '</td></tr>';
-          
+            if (key != 'data')
+              rows = '<tr><td><strong>' + key + ':</strong></td><td>' + val + '</td></tr>';
+            else
+              rows = ''
+
           $('#request').append(rows);
         }
       });

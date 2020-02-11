@@ -85,7 +85,8 @@ def api_request():
         'ip': ip,
         'url': request.url,
         'method': request.method,
-        'headers': dict(request.headers)
+        'headers': dict(request.headers),
+        'data': dict(request.form)
     })
 
 @app.route('/request')
