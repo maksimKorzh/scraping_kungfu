@@ -74,6 +74,19 @@ def api():
     else:
         return jsonify({'data': response})
 
+@app.route('/api/request')
+def api_request():
+    return jsonify({
+        'ip': request.headers.getlist("X-Forwarded-For")[0],
+        'url': request.url,
+        'method': request.method,
+        'headers': dict(request.headers)
+    })
+
+@app.route('/request')
+def user_request():
+    return render_template('request.html')
+
 @app.route('/chambers')
 def about():
     return render_template('chambers.html')

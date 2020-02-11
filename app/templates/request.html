@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+ 
+  <div class="card mt-2">
+    <div class="card-body">
+      <div class="container">
+        <div class="row text-center">
+          <table class="table text-left border" style="width: 100%">
+            <tbody id="request">
+              <tr class="bg-light text-center"><td><strong>REQUEST</strong></td><td></td></tr>
+              <!-- content is generated dynamically by Jquery -->
+            </tbody>
+          </table>
+          <table class="table text-left mt-4 border" style="width: 100%">
+            <tbody id="headers">
+              <tr class="bg-light text-center"><td><strong>HEADERS:</strong></td><td></td></tr>
+              <!-- content is generated dynamically by Jquery -->
+            </tbody>
+          </table>
+        </div>        
+    </div>
+  </div>
+ 
+  <script>
+    $.get('/api/request', (data) => {
+      $.each(data, (key, val) => {  
+        if (key != 'headers') {
+          rows = '<tr><td><strong>' + key + ':</strong></td><td>' + val + '</td></tr>'
+          $('#request').append(rows);
+        }
+      });
+      
+      $.each(data.headers, (key, val) => {  
+        rows = '<tr><td><strong>' + key + ':</strong></td><td>' + val + '</td></tr>'
+        $('#headers').append(rows);
+      });
+    });
+  </script>
+  
+  
+{% endblock %}
+
+
+
+
